@@ -1,4 +1,5 @@
-# Table of contents
+# Summary
+
 * [前言](README.md)
 * [01. 概述](./book/chapter01/introduction.md)
   * [1.1  什么是机器学习](./book/chapter01/section01_learning.md)
@@ -16,3 +17,4 @@
 * [03. 线性分类](./book/chapter03/linear_classification.md)
 * [04. 决策树](./book/chapter04/decision_tree.md)
 * [05. SVM](./book/chapter05/svm.md)
+
