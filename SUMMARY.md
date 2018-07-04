@@ -14,7 +14,10 @@
   * [2.4 岭回归](./book/chapter02/section04_ridge.md)
   * [2.5 Lasso](./book/chapter02/section05_lasso.md)
   * [2.6 坐标下降](./book/chapter02/section06_cd.md)
+  * [2.7 实例](./book/chapter02/section07_example.md)
 * [03. 线性分类](./book/chapter03/linear_classification.md)
 * [04. 决策树](./book/chapter04/decision_tree.md)
 * [05. SVM](./book/chapter05/svm.md)
-
+* [附录]
+  *[矩阵运算](./book/appendix/matrix.md)
+  *[a](./chapter_01_introduction.md)
