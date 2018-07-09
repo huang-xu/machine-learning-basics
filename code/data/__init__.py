@@ -6,7 +6,7 @@ import pandas as pd
 
 
 
-def data_Boston_house_price(fn="./boston.txt"):
+def data_Boston_house_price(fn="../data/boston.txt"):
     with open(fn, "r") as f:
         f_contents = f.readlines()
     col_names, col_des = [], []
@@ -15,8 +15,9 @@ def data_Boston_house_price(fn="./boston.txt"):
         col_names.append(name.strip())
         col_des.append(des.strip())
     data = np.array([feature_row.strip().split()
-                     for feature_row in f_contents[22:]])
-    return data, col_names, col_des
+                     for feature_row in f_contents[22:]],
+                    dtype=np.float32)
+    return data#, col_names, col_des
 
 
 def esl_ch2(seed_size=10, data_size=100,
@@ -39,7 +40,7 @@ def esl_ch2(seed_size=10, data_size=100,
     return np.array(data)
 
 
-def housing_ch2(fn='./regression_X27.txt'):
+def housing_ch2(fn='../data/regression_X27.txt'):
     with open(fn, 'r') as f:
         contents = f.readlines()
     col_names = [arow.split(',')[0].strip() for arow in contents[1:13]]

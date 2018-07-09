@@ -18,11 +18,14 @@ class BasicClassifier(LogisticRegression):
 
 
 class Adaboost:
-    def __init__(self,threshold=0.5, basic_classifier=DecisionTree):
+    def __init__(self, threshold=0.5,
+                 basic_classifier=DecisionTree,
+                 basic_classifier_depth=2):
         self.basic_classifier = basic_classifier
         self.threshold = threshold
+        self.basic_classifier_depth=basic_classifier_depth
 
-    def fit(self, X, t, M=50):
+    def fit(self, X, t, M=20):
         if type(X) is not np.ndarray:
             X = np.array(X)
         if type(t) is not np.ndarray:
@@ -32,7 +35,8 @@ class Adaboost:
         self.alphams = []
         self.classifiers = []
         for i in range(M):
-            a_clf = self.basic_classifier(max_depth=1, data_weights=dm).fit(X, t)
+            a_clf = self.basic_classifier(max_depth=self.basic_classifier_depth,
+                                          data_weights=dm).fit(X, t)
             res = a_clf.predict(X)
             em = dm[res != t].sum()
             if em > 0.5:
@@ -66,9 +70,6 @@ class Adaboost:
                     max = wsum
                     max_class = aclass
             res.append(max_class)
-        #lscore = np.sum(clfs, axis=0)
-        #res = np.ones(len(X), dtype=np.int32)
-        #res[np.where(lscore<self.threshold)[0]] = -1
         return res
 
 
@@ -82,21 +83,18 @@ if __name__=="__main__":
     features = data[:, :-1]
 
     features, targets = sf_ny_house()
-    features = str2factor(features)
-
-    features, targets = sf_ny_house()
-    features = str2factor(features)
+    #features = str2factor(features)
     from sklearn.model_selection import train_test_split
     trainX, testX, trainY,  testY = train_test_split(features, targets, test_size=0.5)
-    ab = Adaboost(basic_classifier=CARTClassifier).fit(features, targets)
+    ab = Adaboost(basic_classifier=CARTClassifier, basic_classifier_depth=3).fit(features, targets)
     ab.fit(trainX, trainY)
     predy= ab.predict(trainX)
     print(sum(trainY == predy)/len(trainY))
     predy = ab.predict(testX)
     print(sum(testY == predy) / len(testY))
 
-    for i, aclf in enumerate(ab.classifiers):
-        aclf.draw(graph_name="n%d"%i)
+    #for i, aclf in enumerate(ab.classifiers):
+    #    aclf.draw(graph_name="n%d"%i)
 
 #    lr = DecisionTree(max_depth=1).fit(features, targets).predict(features)
     #print(lr)

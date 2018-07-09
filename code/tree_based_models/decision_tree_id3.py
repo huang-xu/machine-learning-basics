@@ -146,12 +146,15 @@ if __name__ == '__main__':
     targets = data[:, -1]
     features = data[:, :-1]
 
-    features, targets = audiology_standardized_data()
+    features, targets = sf_ny_house()
 
+    from sklearn.model_selection import train_test_split
+    trainX, testX, trainY,  testY = train_test_split(features, targets, test_size=0.15)
     clf = DecisionTree()
-    clf.fit(features, targets)
+    clf.fit(trainX, trainY)
+    predy= clf.predict(trainX)
+    print(sum(trainY == predy)/len(trainY))
+    predy = clf.predict(testX)
+    print(sum(testY == predy) / len(testY))
     clf.draw()
-    predy = clf.predict(features)
-    kk = [i for i in range(len(targets)) if targets[i] != predy[i] ]
-    print(kk)
-    #clf.print()
+

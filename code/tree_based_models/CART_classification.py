@@ -165,7 +165,6 @@ class CARTClassifier:
         self.__dfs_print(rchild)
 
 
-
 if __name__ == '__main__':
     # statistic_learning_methods_table51
     data = np.array([[0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2],
@@ -176,15 +175,15 @@ if __name__ == '__main__':
     targets = data[:, -1]
     features = data[:, :-1]
     #print(targets)
-    features, targets = audiology_standardized_data()
+    #features, targets = audiology_standardized_data()
     features, targets = sf_ny_house()
     features = str2factor(features)
     from sklearn.model_selection import train_test_split
-    trainX, testX, trainY,  testY = train_test_split(features, targets, test_size=0.5)
+    trainX, testX, trainY,  testY = train_test_split(features, targets, test_size=0.2)
     clf = CARTClassifier()
     clf.fit(trainX, trainY)
     predy= clf.predict(trainX)
     print(sum(trainY == predy)/len(trainY))
     predy = clf.predict(testX)
     print(sum(testY == predy) / len(testY))
-    clf.draw()
+    #clf.draw()
