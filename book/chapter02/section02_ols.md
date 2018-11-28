@@ -20,7 +20,7 @@ $$
 由于$$L(\mathbf{w}, D)$$是$$\mathbf{w}$$的二次函数，如果$$L(\mathbf{w}, D)$$存在极值，则极值在$$\frac{\partial L(\mathbf{w}, D)}{\partial w} = 0$$处取得，因此求解 $$\frac{\partial L(\mathbf{w}, D)}{\partial w} = 0$$:
 
 $$
-\frac{\partial L(\mathbf{w}, D)}{\partial \mathbf{w}} = \mathbf{X}^T   (\mathbf{t} - \mathbf{X} \mathbf{w}) =0
+\frac{\partial L(\mathbf{w}, D)}{\partial \mathbf{w}} = - \mathbf{X}^T   (\mathbf{t} - \mathbf{X} \mathbf{w}) =0
 $$
 
 得
@@ -29,7 +29,7 @@ $$
 \mathbf{w} = (\mathbf{X}^T\mathbf{X})^{-1} \mathbf{X}^T \mathbf{t}
 $$
 
-解中包含求逆运算 $$(\mathbf{X}^T\mathbf{X})^{-1} $$，因此当 $$\mathbf{X}^T\mathbf{X}$$ 不可逆时最小二乘发不适用。
+解中包含求逆运算 $$(\mathbf{X}^T\mathbf{X})^{-1} $$，因此当 $$\mathbf{X}^T\mathbf{X}$$ 不可逆时最小二乘法不适用。
 
 ## 实现最小二乘
 下面是最小二乘的实现
